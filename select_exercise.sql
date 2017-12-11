@@ -10,4 +10,4 @@ SELECT * FROM albums where release_date between '1990' and '2000';
 
 SELECT * FROM albums where sales < '20000000';
 
-SELECT * FROM albums where genre = 'Rock';
+SELECT * FROM albums where genre like '%rock%';
