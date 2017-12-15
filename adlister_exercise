@@ -1,0 +1,77 @@
+USE adlister_db;
+
+# CREATE TABLE users (
+#   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+#   email VARCHAR(255) NOT NULL,
+#   password VARCHAR(255) NOT NULL,
+#   PRIMARY KEY (id)
+# );
+#
+# CREATE TABLE categories (
+#   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+#   cat_name VARCHAR(255) NOT NULL,
+#   PRIMARY KEY (id)
+# );
+#
+# CREATE TABLE ads (
+#   id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+#   title VARCHAR(255) NOT NULL,
+#   description VARCHAR(255) NOT NULL,
+#   user_id INTEGER UNSIGNED NOT NULL,
+#   FOREIGN KEY (user_id) REFERENCES users(id),
+#   PRIMARY KEY (id)
+# );
+#
+#
+# CREATE TABLE ad_categories (
+#   ad_id INTEGER UNSIGNED NOT NULL,
+#   category_id INTEGER UNSIGNED NOT NULL,
+#   FOREIGN KEY (ad_id) REFERENCES ads(id),
+#   FOREIGN KEY (category_id) REFERENCES categories(id)
+# );
+#
+# INSERT INTO users(email, password) VALUES
+#   ('acano6835@gmail.com', 'codeup'),
+#   ('login@gmail.com', 'asdf'),
+#   ('emmett@codeup.com', 'asdfre');
+#
+# INSERT INTO categories(cat_name) VALUES
+#   ('help wanted'),
+#   ('furniture'),
+#   ('giveaway');
+#
+# INSERT INTO ads(title, description, user_id) VALUES
+#   ('Free cat', 'Here\'s a free cat', '1'),
+#   ('Couch', 'Selling couch', '2'),
+#   ('Car wash', 'need help washing car', '3');
+#
+# INSERT INTO ad_categories(ad_id, category_id) VALUES
+#   (1, 2),
+#   (1, 3),
+#   (2, 3);
+
+SELECT email
+FROM users
+JOIN ads on users.id = ads.id
+WHERE ads.id = 2;
+
+SELECT cat_name
+FROM categories as c
+JOIN ad_categories as ac
+  ON ac.ad_id = c.id
+JOIN ads
+  ON ads.id = ac.ad_id
+WHERE ads.id = 1;
+
+SELECT *
+FROM ads
+JOIN ad_categories as ac
+  ON ac.ad_id = ads.id
+JOIN categories as c
+  ON c.id = ac.category_id
+WHERE cat_name = 'giveaway';
+
+SELECT *
+FROM ads
+JOIN users on users.id = ads.id
+WHERE users.id = 3;
